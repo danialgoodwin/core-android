@@ -10,7 +10,7 @@
     <!-- Used by HelperConnectivity -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     
-    <!-- Used by HelperNetwork -->
+    <!-- Used by HelperHttp -->
     <uses-permission android:name="android.permission.INTERNET" />
     
     <application
