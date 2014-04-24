@@ -9,7 +9,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
-//import android.util.Log;
+import android.util.Log;
 
 /** A modular class for activating/deactivating Location providers (GPS/Network) and for getting
  * current location in general.

@@ -7,11 +7,18 @@
         android:minSdkVersion="8"
         android:targetSdkVersion="19" />
 
+    <!-- Required for access to user location provided by network provider. -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+            
+    <!-- Required for access to user location provided by GPS. -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+	
     <!-- Used by HelperConnectivity -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     
     <!-- Used by HelperHttp -->
     <uses-permission android:name="android.permission.INTERNET" />
+    
     
     <application
         android:allowBackup="true"

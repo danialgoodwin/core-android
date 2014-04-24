@@ -13,13 +13,10 @@ import com.squareup.okhttp.OkHttpClient;
 
 /** A simple helper class to help simplify accessing Internet resources.
  * 
- * This class uses the following two libraries: OkHttp, Guava
- * More info: http://square.github.io/okhttp/
- * More info: https://code.google.com/p/guava-libraries/
- * 
  * This class uses the following permissions in AndroidManifest.xml:
     <uses-permission android:name="android.permission.INTERNET" />
  * 
+ * More info: http://square.github.io/okhttp/
  *  */
 public class HelperHttp {
 //	private static final String LOG_TAG = "DEBUG: net.simplyadvanced.helper.HelperHttp";

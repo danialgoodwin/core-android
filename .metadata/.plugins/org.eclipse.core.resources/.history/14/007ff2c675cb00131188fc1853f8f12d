@@ -9,7 +9,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
-//import android.util.Log;
+import android.util.Log;
 
 /** A modular class for activating/deactivating Location providers (GPS/Network) and for getting
  * current location in general.
@@ -26,13 +26,13 @@ import android.os.Bundle;
  *  
  *  */
 public class HelperLocation {
-//	private static final String LOG_TAG = "DEBUG: net.simplyadvanced.helper.HelperLocation";
-//	private static final boolean IS_DEBUG = true;
-//	private static void log(final String message) {
-//		if (BuildConfig.DEBUG && IS_DEBUG) {
-//			Log.d(LOG_TAG, message);
-//		}
-//	}
+	private static final String LOG_TAG = "DEBUG: net.simplyadvanced.helper.HelperLocation";
+	private static final boolean IS_DEBUG = true;
+	private static void log(final String message) {
+		if (BuildConfig.DEBUG && IS_DEBUG) {
+			Log.d(LOG_TAG, message);
+		}
+	}
 	
 	/** The minimum amount of time, in milliseconds, that the location listener should listen for location updates. Currently set for 5 minutes. */
 	public static final long MIN_TIME = 5*60*1000; // In milliseconds. // Currently, set for 5 minutes.
