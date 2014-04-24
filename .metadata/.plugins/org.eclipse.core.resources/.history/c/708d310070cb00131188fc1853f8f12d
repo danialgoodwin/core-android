@@ -19,7 +19,7 @@ import com.squareup.okhttp.OkHttpClient;
  * More info: http://square.github.io/okhttp/
  *  */
 public class HelperHttp {
-//	private static final String LOG_TAG = "DEBUG: net.simplyadvanced.helper.HelperHttp";
+//	private static final String LOG_TAG = "DEBUG: net.simplyadvanced.helper.HelperNetwork";
 //	private static final boolean IS_DEBUG = true;
 //	private static final void log(String message) {
 //		if (BuildConfig.DEBUG && IS_DEBUG) {
