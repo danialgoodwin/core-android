@@ -1,0 +1,21 @@
+package net.simplyadvanced.helper;
+
+import android.content.Context;
+import android.net.ConnectivityManager;
+
+public class HelperConnectivity {
+
+	
+	/** Returns true if device is connected to Internet, otherwise false. */
+	public static boolean hasInternetConnection(final Context context) {
+		ConnectivityManager conMgr = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+		if (conMgr.getActiveNetworkInfo() != null
+				&& conMgr.getActiveNetworkInfo().isAvailable()
+				&& conMgr.getActiveNetworkInfo().isConnected()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+}

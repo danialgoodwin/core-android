@@ -1,0 +1,274 @@
+package net.simplyadvanced.helper;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.List;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.utils.URLEncodedUtils;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import android.util.Log;
+
+/** A simple helper class to help simplify accessing Internet resources.
+ * 
+ * This class uses the following permissions in AndroidManifest.xml:
+    <uses-permission android:name="android.permission.INTERNET" />
+ * 
+ * More info: http://developer.android.com/training/basics/network-ops/xml.html
+ *  */
+public class HelperNetwork {
+	private static final String LOG_TAG = "DEBUG: net.simplyadvanced.helper.HelperNetwork";
+//	private static final boolean IS_DEBUG = true;
+//	private static final void log(String message) {
+//		if (BuildConfig.DEBUG && IS_DEBUG) {
+//			Log.d(LOG_TAG, message);
+//		}
+//	}
+	
+	/** Prevent instantiation of this class. */
+	private HelperNetwork() {}
+	
+	
+
+	/** Constant string to use for "POST" requests. */
+	public static final String HTTP_POST = "POST";
+
+	/** Constant string to use for "GET" requests. */
+	public static final String HTTP_GET = "GET";
+	
+	
+
+	
+	
+
+	
+	public static String makeHttpGetRequest(final String url) {
+		HttpResponse httpResponse = null;
+		try {
+	        HttpClient httpClient = new DefaultHttpClient();
+	        HttpGet httpGet = new HttpGet();
+//          String paramString = URLEncodedUtils.format(params, "utf-8");
+//          url += "?" + paramString;
+	        httpGet.setURI(new URI(url));
+	        httpResponse = httpClient.execute(httpGet);
+	    } catch (URISyntaxException e) {
+	        e.printStackTrace();
+	    } catch (ClientProtocolException e) {
+	        e.printStackTrace();
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
+		
+
+        InputStream inputStream = getInputStreamFromHttpResponse(httpResponse);
+        String response = getStringFromInputStream(inputStream);
+		
+		
+		
+	    return response;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public static HttpResponse makeHttpPostRequest(final String url) {
+		HttpResponse httpResponse = null;
+		try {
+	        HttpClient httpClient = new DefaultHttpClient();
+            HttpPost httpPost = new HttpPost();
+            httpPost.setURI(new URI(url));
+//          httpPost.setEntity(new UrlEncodedFormEntity(params));
+	        httpResponse = httpClient.execute(httpPost);
+	    } catch (URISyntaxException e) {
+	        e.printStackTrace();
+	    } catch (ClientProtocolException e) {
+	        e.printStackTrace();
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
+		
+		
+	    return httpResponse;
+	}
+
+
+
+    /** Make a HTTP request with parameters already added in the URL (or no parameters at all).
+     * This will return null if request isn't for a valid JSONObject.
+     * 
+     * @param url In the format of "http://..."
+     * @param method Either "GET" or "POST"
+     * 
+     * @return response from performing request */
+//    public static JSONObject makeHttpRequestForJson(final String url, final String method) {
+//    	String responseString = makeHttpRequest(url, method);
+//    	
+//    	JSONObject responseJsonObject = null;
+//        try {
+//            responseJsonObject = new JSONObject(responseString);
+//        } catch (JSONException e) {
+//            Log.e(LOG_TAG, "Error parsing data " + e.toString());
+////        	throw new RuntimeException(e);
+//        }
+//
+////      log("makeHttpRequestForJson(" + url + "), " + responseJsonObject.toString());
+//    	return responseJsonObject;
+//    }
+
+    /** Make a HTTP request with parameters.
+     * This will return null if request isn't for a valid JSONObject.
+     * @param url In the format of "http://..."
+     * @param method Either "GET" or "POST"
+     * @param params The parameters to send with url
+     * 
+     * @return response from performing request */
+//    public static JSONObject makeHttpRequestForJson(final String url, final String method, final List<NameValuePair> params) {
+//    	String responseString = makeHttpRequest(url, method, params);
+//    	
+//    	JSONObject responseJsonObject = null;
+//        try {
+//            responseJsonObject = new JSONObject(responseString);
+//        } catch (JSONException e) {
+//            Log.e(LOG_TAG, "Error parsing data " + e.toString());
+////        	throw new RuntimeException(e);
+//        }
+//
+////      log("makeHttpRequestForJson(" + url + "), " + responseJsonObject.toString());
+//    	return responseJsonObject;
+//    }
+    
+    
+    /** Returns the full response after calling the URL, which is typically in the format of "http://...".
+     * 
+     * @return response from performing request */
+	private static final HttpResponse makeHttpPostRequest(final String url, final List<NameValuePair> params) {
+		HttpResponse httpResponse = null;
+		try {
+	        HttpClient httpClient = new DefaultHttpClient();
+            HttpPost httpPost = new HttpPost();
+            httpPost.setURI(new URI(url));
+            httpPost.setEntity(new UrlEncodedFormEntity(params));
+	        httpResponse = httpClient.execute(httpPost);
+	    } catch (URISyntaxException e) {
+	        e.printStackTrace();
+	    } catch (ClientProtocolException e) {
+	        e.printStackTrace();
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
+	    return httpResponse;
+	}
+	
+	/** Returns the full response after calling the URL, which is typically in the format of "http://...". */
+	private static final HttpResponse makeHttpGetRequest(String url, final List<NameValuePair> params) {
+		HttpResponse httpResponse = null;
+		try {
+	        HttpClient httpClient = new DefaultHttpClient();
+	        HttpGet httpGet = new HttpGet();
+            String paramString = URLEncodedUtils.format(params, "utf-8");
+            url += "?" + paramString;
+	        httpGet.setURI(new URI(url));
+	        httpResponse = httpClient.execute(httpGet);
+	    } catch (URISyntaxException e) {
+	        e.printStackTrace();
+	    } catch (ClientProtocolException e) {
+	        e.printStackTrace();
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
+	    return httpResponse;
+	}
+	
+	/** Returns an InputStream from HttpResponse.
+	 * 
+	 *  @param hr */
+	private static final InputStream getInputStreamFromHttpResponse(final HttpResponse hr)
+			throws IllegalStateException, IOException {
+    	InputStream inputStream = null;
+        try {
+			inputStream = hr.getEntity().getContent();
+		} catch (IllegalStateException e) {
+			throw e;
+		} catch (IOException e) {
+			throw e;
+		}
+        return inputStream;
+	}
+	
+	/** Returns a String of characters from the InputStream given. */
+	private static final String getStringFromInputStream(final InputStream is) {
+		BufferedReader reader = null;
+		StringBuilder sb = null;
+		try {
+			// InputStreamReader is used to read characters. Use just InputStream->DataInputStream for binary data.
+			reader = new BufferedReader(new InputStreamReader(is, "UTF-8"), 8); // JSON is UTF-8 by default I believe.
+//			reader = new BufferedReader(new InputStreamReader(is, "iso-8859-1"), 8);
+			sb = new StringBuilder();
+			String line = null;
+			
+			while ((line = reader.readLine()) != null) {
+			    sb.append(line).append("\n");
+//			    log("convertInputStreamToString(), sb: " + sb.toString());
+			}
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (reader != null) {
+				try {
+					reader.close();
+				} catch (IOException e) {
+					// Ignore. // Close quietly. // org.apache.commons.io.IOUtils.closeQuietly(InputStream).
+//					e.printStackTrace();
+				}
+			}
+		}
+		
+		return sb.toString();
+	}
+	
+
+
+	/************/
+	/* Threaded */ // This would possibly go in a different class, called "HelperNetworkAsync".
+	/************/
+
+//    public static final String makeHttpRequestThreaded(final String url, final String method) {
+//		// AsyncTask<Params, Progress, Result>
+//		new AsyncTask<Void, Void, String>() {
+//			@Override
+//			protected Void doInBackground(Void... params) {
+//				return null;
+//			}
+//
+//			@Override
+//			protected void onPostExecute(String result) {
+//				log("onPostExecute(), all Internet stuff done");
+//			}
+//		}.execute();
+//    }
+	
+	
+	
+
+}

@@ -1,0 +1,86 @@
+package net.simplyadvanced.helper;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+import com.google.common.io.CharStreams;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.internal.http.Request;
+import com.squareup.okhttp.internal.http.Response;
+
+/** A simple helper class to help simplify accessing Internet resources.
+ * 
+ * This class uses the following permissions in AndroidManifest.xml:
+    <uses-permission android:name="android.permission.INTERNET" />
+ * 
+ * More info: http://square.github.io/okhttp/
+ *  */
+public class HelperHttp {
+//	private static final String LOG_TAG = "DEBUG: net.simplyadvanced.helper.HelperNetwork";
+//	private static final boolean IS_DEBUG = true;
+//	private static final void log(String message) {
+//		if (BuildConfig.DEBUG && IS_DEBUG) {
+//			Log.d(LOG_TAG, message);
+//		}
+//	}
+	
+	/** Prevent instantiation of this class. */
+	private HelperHttp() {}
+	
+	
+	private static OkHttpClient client;
+	
+	static {
+		client = new OkHttpClient();
+	}
+	
+	
+	public static String get(URL url) throws IOException {
+		HttpURLConnection connection = client.open(url);
+		InputStream in = null;
+		try {
+			// Read the response.
+			in = connection.getInputStream();
+			byte[] response = readFully(in);
+			return new String(response, "UTF-8");
+		} finally {
+			if (in != null)
+				in.close();
+		}
+	}
+	
+	public static String post(URL url, byte[] body) throws IOException {
+		HttpURLConnection connection = client.open(url);
+		OutputStream out = null;
+		InputStream in = null;
+		try {
+			// Write the request.
+			connection.setRequestMethod("POST");
+			out = connection.getOutputStream();
+			out.write(body);
+			out.close();
+
+			// Read the response.
+			if (connection.getResponseCode() != HttpURLConnection.HTTP_OK) {
+				throw new IOException("Unexpected HTTP response: "
+						+ connection.getResponseCode() + " "
+						+ connection.getResponseMessage());
+			}
+			in = connection.getInputStream();
+			return readFirstLine(in);
+		} finally {
+			// Clean up.
+			if (out != null) { out.close(); }
+			if (in != null) { in.close(); }
+		}
+	}
+	
+	
+	private static String getStringFromInputStream(final InputStream inputStream) {
+		return CharStreams.toString(inputStream, "UTF-8");
+	}
+
+}

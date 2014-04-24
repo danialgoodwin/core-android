@@ -1,0 +1,5 @@
+INDEX VERSION 1.126+C:\Users\Danial\Dev\Android\GitHub\android-simply-advanced-helper\.metadata\.plugins\org.eclipse.jdt.core
+1319782292.index
+774232552.index
+1723792934.index
+1707493552.index
