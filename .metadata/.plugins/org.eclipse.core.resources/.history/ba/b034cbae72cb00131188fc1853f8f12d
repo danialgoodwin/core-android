@@ -14,9 +14,7 @@ public class HelperRuntime {
     private static final String TAG_DALVIK = "Dalvik";
     private static final String TAG_ART = "ART";
     private static final String TAG_ART_DEBUG_BUILD = "ART debug build";
-
-	/** Prevent instantiation of this class. */
-	private HelperRuntime() {}
+    
     
     
     /** Returns true is device has the Dalvik runtime. Returns false if ART or unknown. */
