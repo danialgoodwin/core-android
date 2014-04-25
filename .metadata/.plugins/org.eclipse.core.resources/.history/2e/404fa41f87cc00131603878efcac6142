@@ -12,6 +12,8 @@ import java.util.List;
 
 import org.apache.http.NameValuePair;
 
+import android.os.ParcelFormatException;
+
 import com.google.common.io.CharStreams;
 import com.squareup.okhttp.OkHttpClient;
 

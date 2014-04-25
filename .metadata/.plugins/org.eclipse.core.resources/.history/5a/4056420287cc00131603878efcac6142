@@ -12,6 +12,8 @@ import java.util.List;
 
 import org.apache.http.NameValuePair;
 
+import android.os.ParcelFormatException;
+
 import com.google.common.io.CharStreams;
 import com.squareup.okhttp.OkHttpClient;
 
@@ -180,7 +182,7 @@ public class HelperHttp {
 	
 	/** Returns string from input stream.
 	 * 
-	 *  No error checking is done on input. Currently, this method uses Guava, subject to change. */
+	 *  No error checking is done on input. Currently, this method uses Guava, subject to change*/
 	private static String getStringFromInputStream(final InputStream inputStream) throws UnsupportedEncodingException, IOException {
 		return CharStreams.toString(new InputStreamReader(inputStream, "UTF-8"));
 	}

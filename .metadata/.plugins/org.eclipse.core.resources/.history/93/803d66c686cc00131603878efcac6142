@@ -12,6 +12,8 @@ import java.util.List;
 
 import org.apache.http.NameValuePair;
 
+import android.os.ParcelFormatException;
+
 import com.google.common.io.CharStreams;
 import com.squareup.okhttp.OkHttpClient;
 
@@ -178,9 +180,7 @@ public class HelperHttp {
 //		}
 //	}
 	
-	/** Returns string from input stream.
-	 * 
-	 *  No error checking is done on input. Currently, this method uses Guava, subject to change. */
+	
 	private static String getStringFromInputStream(final InputStream inputStream) throws UnsupportedEncodingException, IOException {
 		return CharStreams.toString(new InputStreamReader(inputStream, "UTF-8"));
 	}
@@ -192,11 +192,11 @@ public class HelperHttp {
 	 *  
 	 *  @param paramsList 
 	 *  
-	 *  @return string in the format of "key=value&key2=value2&key3=value3". Or, if input is null or size 0, returns "".
+	 *  @return string in the format of "key=value&key2=value2&key3=value3"
 	 *  
 	 * @throws UnsupportedEncodingException */
 	private static String getStringFromList(final List<NameValuePair> paramsList) throws UnsupportedEncodingException {
-		if (paramsList.size() == 0 || paramsList == null) { return ""; }
+		if (paramsList.size() == 0) { return ""; }
 		
 		StringBuilder sb = new StringBuilder();
 		for (NameValuePair o : paramsList) {

@@ -29,10 +29,6 @@ import android.util.Log;
  * To use this class, you need to declare the following permissions in AndroidManifest.xml:
     <uses-permission android:name="android.permission.INTERNET" />
  * 
- * 
- * Each method in this class runs in the same thread that it is called in.
- * 
- * 
  * More info: http://developer.android.com/training/basics/network-ops/xml.html
  * 
  * @deprecated
