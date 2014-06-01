@@ -32,7 +32,7 @@ public class OrientationUtils {
     public static int getScreenOrientation(Activity activity) {
         Display getOrient = activity.getWindowManager().getDefaultDisplay();
         int orientation = Configuration.ORIENTATION_UNDEFINED;
-        if(getOrient.getWidth() == getOrient.getHeight()) {
+        if (getOrient.getWidth() == getOrient.getHeight()) {
             orientation = Configuration.ORIENTATION_SQUARE;
         } else { 
             if (getOrient.getWidth() < getOrient.getHeight()) {
