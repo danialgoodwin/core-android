@@ -9,9 +9,9 @@ import android.util.Log;
  * https://code.google.com/p/csipsimple/source/browse/trunk/ActionBarSherlock/src/com/actionbarsherlock/internal/utils/UtilityWrapper.java?r=1741
  */
 public class ReflectionUtils {
-	private ReflectionUtils() {}
-
-	/** Returns method if available, otherwise returns null. */
+    private ReflectionUtils() {}
+    
+    /** Returns method if available, otherwise returns null. */
     public static Method safelyGetSuperclassMethod(Class<?> cls, String methodName, Class<?>... parametersType) {
         Class<?> sCls = cls.getSuperclass();
         while (sCls != Object.class) {
@@ -40,5 +40,5 @@ public class ReflectionUtils {
         
         return null;
     }
-
+    
 }

@@ -6,7 +6,7 @@ import android.media.AudioManager;
 /** Static methods related to device audio. */
 public class AudioUtils {
     private AudioUtils() {}
-
+    
     /** Returns true if device ringer is silent or vibrate, otherwise false. */
     public static boolean isRingerSilent(Context context) {
         AudioManager am = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
@@ -17,5 +17,5 @@ public class AudioUtils {
         }
         return false;
     }
-
+    
 }

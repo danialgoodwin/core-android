@@ -15,19 +15,19 @@ public class HelperRuntime {
     private static final String TAG_ART = "ART";
     private static final String TAG_ART_DEBUG_BUILD = "ART debug build";
 
-	/** Prevent instantiation of this class. */
-	private HelperRuntime() {}
+    /** Prevent instantiation of this class. */
+    private HelperRuntime() {}
     
     
     /** Returns true is device has the Dalvik runtime. Returns false if ART or unknown. */
     public static final boolean isRuntimeDalvik() {
-    	return getCurrentRuntimeValue().equalsIgnoreCase(TAG_DALVIK);
+        return getCurrentRuntimeValue().equalsIgnoreCase(TAG_DALVIK);
     }
 
     /** Returns true is device has the ART or ART_DEBUG_BUILD runtime. Returns false if Dalvik or unknown. */
     public static final boolean isRuntimeArt() {
-    	return getCurrentRuntimeValue().equalsIgnoreCase(TAG_ART) ||
-    			getCurrentRuntimeValue().equalsIgnoreCase(TAG_ART_DEBUG_BUILD);
+        return getCurrentRuntimeValue().equalsIgnoreCase(TAG_ART) ||
+                getCurrentRuntimeValue().equalsIgnoreCase(TAG_ART_DEBUG_BUILD);
     }
     
     /** Returns the name of the current runtime TAG_DALVIK, TAG_ART, TAG_ART_DEBUG_BUILD. Or, TAG_UNKNOWN if unknown.
@@ -41,7 +41,7 @@ public class HelperRuntime {
             try {
                 Method get = systemProperties.getMethod("get", String.class, String.class);
                 if (get == null) {
-                	// Hopefully, this never happens
+                    // Hopefully, this never happens
                     return TAG_UNKNOWN;
                 }
                 try {
