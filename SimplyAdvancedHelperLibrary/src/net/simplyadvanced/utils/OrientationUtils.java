@@ -1,7 +1,10 @@
 package net.simplyadvanced.utils;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
+import android.view.Display;
 
 /** Static methods related to device orientation. */
 public class OrientationUtils {
@@ -25,8 +28,9 @@ public class OrientationUtils {
       *    Configuration.ORIENTATION_SQUARE
       *    Configuration.ORIENTATION_UNDEFINED
       */
-    public static int getScreenOrientation() {
-        Display getOrient = getWindowManager().getDefaultDisplay();
+    @Deprecated
+    public static int getScreenOrientation(Activity activity) {
+        Display getOrient = activity.getWindowManager().getDefaultDisplay();
         int orientation = Configuration.ORIENTATION_UNDEFINED;
         if(getOrient.getWidth() == getOrient.getHeight()) {
             orientation = Configuration.ORIENTATION_SQUARE;
@@ -40,4 +44,19 @@ public class OrientationUtils {
         return orientation;
     }
 
+    /** Locks the device window in landscape mode. */
+    public static void setOrientationLandscape(Activity activity) {
+    	activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+    }
+
+    /** Locks the device window in portrait mode. */
+    public static void setOrientationPortrait(Activity activity) {
+    	activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+    }
+    
+    /** Allows user to freely use portrait or landscape mode. */
+    public static void unlockOrientation(Activity activity) {
+    	activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
+    }
+    
 }
