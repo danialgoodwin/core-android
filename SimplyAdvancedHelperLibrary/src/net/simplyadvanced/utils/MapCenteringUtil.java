@@ -16,7 +16,10 @@ import com.google.android.gms.maps.model.LatLng;
  * 
  * A lock was put in so that this could be called multiple times without worry. Not tested.
  * 
- * To use: Just call `MapCenteringUtil.centerOnce(Context, GoogleMap)`.
+ * To use: Just call `MapCenteringUtil.centerOnce(Context, GoogleMap)`. Also,
+ * you will need to add one of the following permissions:
+ *     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+ *     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
  *
  * TODO: Possibly make a callback to let calling class know when this is done.
  * TODO: Clean up variable usage when done.
