@@ -42,7 +42,7 @@ public class MapCenteringUtil {
     
     /** Centers the map to the user's current position. If neither the GPS
      * nor network location services are enabled, then nothing will happen. */
-    public static void centerOnce(Context context, GoogleMap map) {
+    public static void centerOnce(Context context, final GoogleMap map) {
         if (lock) { return; }
         lock = true;
         
