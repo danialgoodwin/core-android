@@ -1,6 +1,7 @@
 package net.simplyadvanced.widget;
 
-import android.widgets.Toast;
+import android.app.Activity;
+import android.widget.Toast;
 
 /** Allows for easy customization of Toasts later. */
 public class CustomToast {
