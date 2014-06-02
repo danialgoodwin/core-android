@@ -3,6 +3,7 @@ package net.simplyadvanced.utils;
 import android.content.Context;
 import android.content.res.Configuration;
 
+// More info: http://developer.android.com/guide/practices/screens_support.html
 /** Static methods about device. */
 public class DeviceUtils {
     private DeviceUtils() {}
