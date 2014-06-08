@@ -36,7 +36,8 @@ public class ScreenManager {
 
     
     
-    // Old and deprecated code
+    // Old and deprecated code.
+    // Possibly has ability to keep screen on even when app isn't open.
     
 //  private static WakeLock wakeLock;
 //  
