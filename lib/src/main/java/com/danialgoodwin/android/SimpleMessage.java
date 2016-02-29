@@ -20,17 +20,7 @@ public class SimpleMessage {
 
     /** Show a quick passive message to the user. */
     public static void showToast(@NonNull Context context, @NonNull CharSequence message) {
-//        if (Looper.myLooper() != null) {
-            Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
-//        } else {
-//            if (mMainThreadHandler == null) { mMainThreadHandler = new Handler(Looper.getMainLooper()); }
-//            mMainThreadHandler.post(new Runnable() {
-//                @Override
-//                public void run() {
-//                    Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
-//                }
-//            });
-//        }
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
     }
 
     /** Show a quick passive message to the user. This will first stop previous messages shown
