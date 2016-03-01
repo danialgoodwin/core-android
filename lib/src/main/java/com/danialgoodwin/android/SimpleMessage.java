@@ -3,14 +3,23 @@
  */
 package com.danialgoodwin.android;
 
+import android.app.AlertDialog;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.app.NotificationCompat;
 import android.widget.Toast;
 
 /** Helper methods to show simple messages to users. */
 public class SimpleMessage {
+
+    private static final int ID_NOTIFICATION_MAIN = 0;
 
     private static Toast mOneToast;
     private static Handler mMainThreadHandler;
@@ -26,13 +35,31 @@ public class SimpleMessage {
     /** Show a quick passive message to the user. This will first stop previous messages shown
      * from this same method. */
     public static void showOneToast(@NonNull Context context, @NonNull CharSequence message) {
-        if (mOneToast != null) {
-            mOneToast.cancel();
-            mOneToast.setText(message);
-        } else {
-            mOneToast = Toast.makeText(context, message, Toast.LENGTH_SHORT);
-        }
+        if (mOneToast != null) { mOneToast.cancel(); }
+        mOneToast = Toast.makeText(context, message, Toast.LENGTH_SHORT);
         mOneToast.show();
+    }
+
+    /** Show a message in the notification bar */
+    public static void showNotification(@NonNull Context context, @NonNull CharSequence title,
+            @NonNull CharSequence message, @DrawableRes int icon, @Nullable PendingIntent intent) {
+        Notification notification = new NotificationCompat.Builder(context)
+                .setContentTitle(title)
+                .setContentText(message)
+                .setSmallIcon(icon)
+                .setStyle(new NotificationCompat.BigTextStyle().bigText(message))
+                .setContentIntent(intent)
+                .build();
+        NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        manager.notify(ID_NOTIFICATION_MAIN, notification);
+    }
+
+    /** Show an interrupting prompt message. */
+    public static void showPrompt(@NonNull Context context, @NonNull CharSequence title, @NonNull CharSequence message) {
+        new AlertDialog.Builder(context)
+                .setTitle(title)
+                .setMessage(message)
+                .show();
     }
 
     /** Show a quick passive message only in debug builds. */
