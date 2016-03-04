@@ -69,6 +69,29 @@ public class ViewFactory {
         return root;
     }
 
+    /** Return a new horizontal LinearLayout. */
+    @NonNull
+    public LinearLayout row() {
+        LinearLayout root = new LinearLayout(mContext);
+        root.setOrientation(LinearLayout.HORIZONTAL);
+        return root;
+    }
+
+    /** Return a new horizontal LinearLayout with non-null views added in order. */
+    @NonNull
+    public LinearLayout row(@Nullable View... views) {
+        LinearLayout root = new LinearLayout(mContext);
+        root.setOrientation(LinearLayout.HORIZONTAL);
+        if (views != null) {
+            for (View view : views) {
+                if (view != null) {
+                    root.addView(view);
+                }
+            }
+        }
+        return root;
+    }
+
     /** Return a new TextView with the text set. */
     @NonNull
     public TextView text(@Nullable String title) {
