@@ -7,6 +7,8 @@ import android.content.Context;
 import android.content.res.Configuration;
 import android.support.annotation.NonNull;
 
+// More info: http://developer.android.com/guide/practices/screens_support.html
+/** Helper methods related to device. */
 public class DeviceUtils {
 
     /* Suppress default constructor for non-instantiability. */
