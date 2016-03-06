@@ -34,7 +34,7 @@ public class AudioUtils {
         return getAudioManager(context).getStreamVolume(AudioManager.STREAM_NOTIFICATION);
     }
 
-    /** Returns the volume for music. */
+    /** Return the volume for music. */
     public static int getMusicVolume(@NonNull Context context) {
         return getAudioManager(context).getStreamVolume(AudioManager.STREAM_MUSIC);
     }
