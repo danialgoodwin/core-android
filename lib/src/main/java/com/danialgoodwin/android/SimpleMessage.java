@@ -54,6 +54,12 @@ public class SimpleMessage {
         manager.notify(ID_NOTIFICATION_MAIN, notification);
     }
 
+    /** Dismiss a message in the notification bar */
+    public static void hideNotification(@NonNull Context context, int notificationId) {
+        ((NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE))
+                .cancel(notificationId);
+    }
+
     /** Show an interrupting prompt message. */
     public static void showPrompt(@NonNull Context context, @NonNull CharSequence title, @NonNull CharSequence message) {
         new AlertDialog.Builder(context)
